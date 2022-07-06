@@ -3,11 +3,11 @@ import { AiFillDelete } from 'react-icons/ai';
 
 
 
-const Tutorial = () => {
+const Tutorial = ({tutorials, deleteTutorial}) => {
     return(
     <div className="container text-center mt-5">
 
-    <table class="table table-striped">
+    <table className="table table-striped">
     <thead>
     <tr>
       <th scope="col">#id</th>
@@ -18,11 +18,14 @@ const Tutorial = () => {
     </tr>
     </thead>
      <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>
+        {tutorials?.map((item)=>{
+            const {id, title, description} = item;
+            return ( 
+      <tr key={id}>
+      <th>{id}</th>
+      <td>{title}</td>
+      <td>{description}</td>
+      <td className="text-center text-nowrap"> 
        <BiEdit
        data-bs-toggle="modal"
        data-bs-target="#edit-modal"
@@ -31,9 +34,13 @@ const Tutorial = () => {
        />
        <AiFillDelete
        size={22}
-       className="text-danger cursor-pointer"/>
+       className="text-danger cursor-pointer"
+       onClick={() => deleteTutorial(id)}/>
        </td>
-    </tr>
+       </tr>
+        );
+        })}
+   
      </tbody>
     </table> 
 
