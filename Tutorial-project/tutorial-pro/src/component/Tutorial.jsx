@@ -1,9 +1,14 @@
 import { BiEdit } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
+import EditTutorial from './EditTutorial';
+import { useState } from 'react';
 
 
-
-const Tutorial = ({tutorials, deleteTutorial}) => {
+const Tutorial = ({tutorials, deleteTutorial, editTutorial}) => {
+    const[editItem, setEditItem] = useState("");
+    
+    
+    
     return(
     <div className="container text-center mt-5">
 
@@ -31,6 +36,7 @@ const Tutorial = ({tutorials, deleteTutorial}) => {
        data-bs-target="#edit-modal"
        size={20}
        className="text-primary me-1 cursor-pointer"
+       onClick={() => setEditItem(item)}
        />
        <AiFillDelete
        size={22}
@@ -43,6 +49,8 @@ const Tutorial = ({tutorials, deleteTutorial}) => {
    
      </tbody>
     </table> 
+
+    <EditTutorial editTutorial={editTutorial} editItem={editItem}/>
 
     </div>
     )

@@ -48,6 +48,17 @@ const Home = () => {
        }
        getTutorial();
     };
+
+    //!EDİT PART (PUT FUNCTİON)
+
+    const editTutorial = async (id, title,desc) =>{
+        try {
+            await axios.put(`${url}/${id}`, {title, description: desc});
+        } catch (error) {
+           console.log(error) 
+        }
+        getTutorial();
+    };
     
     
     
@@ -59,7 +70,8 @@ const Home = () => {
         
         <Tutorial 
         tutorials={tutorials}
-        deleteTutorial={deleteTutorial}/>
+        deleteTutorial={deleteTutorial}
+        editTutorial={editTutorial}/>
         
         </>
     )
